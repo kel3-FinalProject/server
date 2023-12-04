@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "kel3_Final",
-    "host": "127.0.0.1",
+    "username": "vocasia",
+    "password": "vocasia",
+    "database": "booking_room",
+    "host": "103.127.97.117",
     "dialect": "mysql"
   },
   "test": {
