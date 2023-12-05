@@ -39,7 +39,7 @@ class Controller {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ username, name, password }),
+          body: JSON.stringify({ email, name, password }),
         });
       
         const responseJson = await response.json();
