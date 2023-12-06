@@ -12,9 +12,9 @@ async function authentication(req, res, next){
         }
 
         const token = bearer.slice(7);
-
+        console.log(token);
         const decode = jwt.verify(token, secret);
-
+        console.log(decode);
         req.userId = decode.id;
         req.email = decode.email ;
         next();

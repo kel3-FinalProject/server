@@ -1,0 +1,85 @@
+{
+	"info": {
+		"_postman_id": "bca8c643-83ca-49c3-9dae-47b055eb22fd",
+		"name": "booking_room",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30431791"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"ibnu\",\r\n    \"email\": \"ibnu123@gmail.com\",\r\n    \"password\": \"vocasia\",\r\n    \"confirmPassword\": \"vocasia\"\r\n}   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://103.127.97.117:4003/register",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4003",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"ibnu123@gmail.com\",\r\n    \"password\": \"vocasia\"\r\n}   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://103.127.97.117:4003/login",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4003",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
