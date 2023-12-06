@@ -1,26 +1,7 @@
-// const bcrypt = require("bcrypt");
-// const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const { User } = require("../models");
-const BASE_URL = "http://103.127.97.117:3003/api";
-// const secret = "rahasia";
-
-function getAccessToken() {
-    return localStorage.getItem("accessToken");
-  }
-  
-function putAccessToken(accessToken) {
-    return localStorage.setItem("accessToken", accessToken);
-  }
-
-async function fetchWithToken(url, options = {}) {
-    return fetch(url, {
-      ...options,
-      headers: {
-        ...options.headers,
-        Authorization: `Bearer ${getAccessToken()}`,
-      },
-    });
-  }
+const secret = "rahasia";
 
 class Controller {
   static getUser(req, res) {
@@ -33,44 +14,67 @@ class Controller {
     });
 }
 
-    static async register({ email, name, password }) {
-        const response = await fetch(`${BASE_URL}/auth/register`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, name, password }),
-        });
-      
-        const responseJson = await response.json();
-      
-        if (response.status >= 400) {
-          alert(responseJson.msg);
-          return { error: true, code: response.status };
-        }
-      
-        return { error: false, code: response.status };
-      }
+static async register(req, res) {
+  const { name, email, password, confirmPassword } = req.body;
 
-    static async login({ email, password }) {
-        const response = await fetch(`${BASE_URL}/auth/login`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        });
-      
-        const responseJson = await response.json();
-      
-        if (response.status >= 400) {
-          alert(responseJson.msg);
-          return { error: true, code: response.status, data: null };
-        }
-      
-        putAccessToken(responseJson?.data?.token);
-        return responseJson?.data?.token;
+  try {
+      console.log("Received registration request:", { name, email, password, confirmPassword });
+      const existingUser = await User.findOne({ where: { email } });
+      console.log("Existing user:", existingUser);
+
+      if (existingUser) {
+          return res.status(400).json({ message: "Email is already registered. Please use a different email address." });
       }
+      if (password !== confirmPassword) {
+          return res.status(400).json({ message: "Password and confirm password do not match" });
+      }
+      const user = await User.create({
+          name,
+          email,
+          password,
+      });
+
+      res.status(201).json({ message: "Akun berhasil dibuat, silahkan login", user });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json(error);
+  }
+}
+
+static async login(req, res, next) {
+    try {
+      const { email, password } = req.body;
+  
+      const users = await User.findOne({
+        where: {
+          email,
+        },
+      });
+
+      if (users) {
+        const validation = bcrypt.compareSync(password, users.password);
+  
+        if (validation) {
+          const token = jwt.sign(
+            {
+              id: users.id,
+              email: users.email,
+              isAdmin: users.isAdmin,
+            },
+            secret
+          );
+  
+          res.status(200).json({ message: "Berhasil login!", token });
+        } else {
+          next(new Error("SALAH EMAIL/PASSWORD"));
+        } 
+    } else {
+        next(new Error("SALAH EMAIL/PASSWORD"));
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
       
 }
 
