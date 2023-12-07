@@ -1,8 +1,9 @@
 const express = require("express");
-
+const routers = require("./routes/index");
 const app = express();
 
 app.use(express.json());
+app.use(routers);
 
 const port = 4003;
 app.get("/", (req, res) => {
