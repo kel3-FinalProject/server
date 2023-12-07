@@ -3,7 +3,7 @@
     "username": "vocasia",
     "password": "vocasia",
     "database": "booking_room",
-    "host": "103.127.97.117",
+    "host": "47.128.145.189",
     "dialect": "mysql"
   },
   "test": {
