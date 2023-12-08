@@ -1,6 +1,7 @@
 const { Kamar } = require("../models");
 const path = require('path');
 const fs = require('fs');
+const { url } = require("inspector");
 
 class Controller{
     static getKamar = async(req, res)=>{
@@ -35,6 +36,7 @@ class Controller{
             const fileSize = file.data.length;
             const ext = path.extname(file.name);
             const fileName = file.md5 + ext;
+            const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
             const allowedType = ['.png', '.jpg', '.jpeg'];
 
             if (!allowedType.includes(ext.toLowerCase())) {
@@ -51,7 +53,7 @@ class Controller{
                 }
 
                 try {
-                    await Kamar.create({ harga, description, Class, kapasitas, image: fileName });
+                    await Kamar.create({ harga, description, Class, kapasitas, image: fileName, url: url });
                     res.status(201).json({ msg: "Kamar Created Successfully" });
                 } catch (error) {
                     console.log(error.message);
@@ -86,7 +88,7 @@ class Controller{
                 const ext = path.extname(file.name);
                 fileName = file.md5 + ext;
                 const allowedType = ['.png', '.jpg', '.jpeg'];
-    
+                
                 if (!allowedType.includes(ext.toLowerCase())) {
                     return res.status(422).json({ msg: "Invalid Images" });
                 }
@@ -107,8 +109,9 @@ class Controller{
             }
     
             const { harga, description, Class, kapasitas } = req.body;
+            const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
     
-            await Kamar.update({ harga, description, Class, kapasitas, image: fileName }, {
+            await Kamar.update({ harga, description, Class, kapasitas, image: fileName, url: url }, {
                 where: {
                     id: req.params.id
                 }
