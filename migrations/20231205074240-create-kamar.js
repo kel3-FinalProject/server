@@ -17,7 +17,7 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false,
       },
-      class: {
+      Class: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -26,7 +26,7 @@ module.exports = {
         allowNull: false,
       },
       image: {
-        type: Sequelize.TEXT,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       createdAt: {

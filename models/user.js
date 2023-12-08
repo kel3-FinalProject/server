@@ -19,8 +19,21 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.init({
     name: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.TEXT,
+    email: {
+      type: DataTypes.STRING,
+      validate: {
+        isEmail: true,
+      }
+    },
+    password: {
+      type: DataTypes.TEXT,
+      validate: {
+        notEmpty: {
+          ms: "input tidak boleh string kosong"
+        },
+        len: [8, 20],
+      },
+    },
     isAdmin: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
