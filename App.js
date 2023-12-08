@@ -5,11 +5,10 @@ const fileUpload = require('express-fileupload');
 const errorHandling = require("./middlewares/errorHandling");
 
 app.use(express.json());
-
+app.use(express.static("public"));
 app.use(fileUpload());
 app.use(routers);
 app.use(errorHandling);
-
 
 const port = 4003;
 app.get("/", (req, res) => {
