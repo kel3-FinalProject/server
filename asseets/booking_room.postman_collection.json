@@ -47,7 +47,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"ibnu123@gmail.com\",\r\n    \"password\": \"vocasia\"\r\n}   ",
+							"raw": "{\r\n    \"email\": \"agil221103@gmail.com\",\r\n    \"password\": \"ibnu210180\"\r\n}   ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -88,6 +88,224 @@
 							"port": "4003",
 							"path": [
 								"get"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Kamar",
+			"item": [
+				{
+					"name": "getKamar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4003/kamar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"kamar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getKamarByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4003/kamar/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"kamar",
+								":id"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addKamar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZ2lsMjIxMTAzQGdtYWlsLmNvbSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcwMjAzNDE0Nn0.vJAWGRpriTjJq8FwRxyEmJl26_z4AGRqLn9x8wEU74A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "harga",
+									"value": "110000",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "kamar bagus",
+									"type": "text"
+								},
+								{
+									"key": "kapasitas",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "Class",
+									"value": "VIP",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "2f7b5a8213144152b070548173273584_tplv-photomode-image.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4003/kamar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"kamar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateKamar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJhZ2lsMjIxMTAzQGdtYWlsLmNvbSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcwMjAzMjAwOH0.NWPeb4WOYFCdnmCyThcKXOHZYOoYfXof7srSS1-S0lg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "harga",
+									"value": "130000",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "kamar cakep",
+									"type": "text"
+								},
+								{
+									"key": "kapasitas",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "Class",
+									"value": "VIP",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4003/kamar/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"kamar",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteKamar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJhZ2lsMjIxMTAzQGdtYWlsLmNvbSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcwMjAzMjAwOH0.NWPeb4WOYFCdnmCyThcKXOHZYOoYfXof7srSS1-S0lg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4003/kamar/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"kamar",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7"
+								}
 							]
 						}
 					},
