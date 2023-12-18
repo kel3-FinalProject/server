@@ -24,7 +24,8 @@ module.exports = (sequelize, DataTypes) => {
     kamarId: DataTypes.INTEGER,
     total: DataTypes.INTEGER,
     tanggal_checkin: DataTypes.DATE,
-    tanggal_checkout: DataTypes.DATE
+    tanggal_checkout: DataTypes.DATE,
+    status: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Reservasi',

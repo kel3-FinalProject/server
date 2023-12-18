@@ -16,6 +16,18 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Kamar.init({
+    nameKamar: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "input tidak boleh null"
+        },
+        notEmpty: {
+          msg: "input tidak boleh string kosong"
+        }
+      }
+    },
     harga: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -30,6 +42,30 @@ module.exports = (sequelize, DataTypes) => {
     },
     description: {
       type: DataTypes.TEXT,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "input tidak boleh null"
+        },
+        notEmpty: {
+          msg: "input tidak boleh string kosong"
+        }
+      }
+    },
+    fasilitas: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "input tidak boleh null"
+        },
+        notEmpty: {
+          msg: "input tidak boleh string kosong"
+        }
+      }
+    },
+    size: {
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notNull: {
@@ -59,7 +95,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     image: DataTypes.STRING,
-    url: DataTypes.STRING
+    urlImage: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Kamar',
