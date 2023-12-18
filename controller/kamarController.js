@@ -28,15 +28,15 @@ class Controller{
 
     static addKamar(req, res, next) {
         try {
-            if (req.files === null) {
-                throw { name: "badRequest", message: "No File Uploaded" };
+            if (!req.files || !req.files.file) {
+                throw { name: "badRequest", message: "Tidak Ada File yang Diunggah" };
             }
-            const { harga, description, Class, kapasitas } = req.body;
+            const { nameKamar, harga, description, fasilitas, size, Class, kapasitas } = req.body;
             const file = req.files.file;
             const fileSize = file.data.length;
             const ext = path.extname(file.name);
             const fileName = file.md5 + ext;
-            const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
+            const urlImage = `${req.protocol}://${req.get("host")}/images/${fileName}`;
             const allowedType = ['.png', '.jpg', '.jpeg'];
 
             if (!allowedType.includes(ext.toLowerCase())) {
@@ -53,7 +53,7 @@ class Controller{
                 }
 
                 try {
-                    await Kamar.create({ harga, description, Class, kapasitas, image: fileName, url: url });
+                    await Kamar.create({ nameKamar, harga, description, fasilitas, size, Class, kapasitas, image: fileName, urlImage: urlImage });
                     res.status(201).json({ msg: "Kamar Created Successfully" });
                 } catch (error) {
                     console.log(error.message);
@@ -108,10 +108,10 @@ class Controller{
                 });
             }
     
-            const { harga, description, Class, kapasitas } = req.body;
+            const { nameKamar, harga, description, fasilitas, size, Class, kapasitas } = req.body;
             const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
     
-            await Kamar.update({ harga, description, Class, kapasitas, image: fileName, url: url }, {
+            await Kamar.update({ nameKamar, harga, description, fasilitas, size, Class, kapasitas, image: fileName, url: url }, {
                 where: {
                     id: req.params.id
                 }
