@@ -22,7 +22,6 @@ class Controller {
     }
   };
   
-
   static async getKamarById(req, res) {
     try {
       const response = await Kamar.findOne({
@@ -30,11 +29,29 @@ class Controller {
           id: req.params.id,
         },
       });
-      res.json(response);
+  
+      if (response) {
+        const formattedResponse = response.toJSON();
+  
+        if (formattedResponse.fasilitas) {
+          const fasilitas_array = formattedResponse.fasilitas.split(",");
+          formattedResponse.fasilitas_array = fasilitas_array;
+        } else {
+          formattedResponse.fasilitas_array = [];
+        }
+  
+        res.json({ error: false, code: 200, data: formattedResponse });
+      } else {
+        res.status(404).json({ error: true, code: 404, data: null });
+      }
     } catch (error) {
       console.log(error.message);
+      res.status(500).json({ error: true, code: 500, data: null });
     }
   }
+  
+  
+
 
   static addKamar(req, res, next) {
     try {
