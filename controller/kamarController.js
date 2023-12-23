@@ -6,20 +6,22 @@ class Controller {
   static getKamar = async (req, res) => {
     try {
       const response = await Kamar.findAll();
-
-      response.forEach((element, index) => {
-        if (element.fasilitas !== "" || element.fasilitas !== null) {
+  
+      const formattedResponse = response.map((element) => {
+        if (element.fasilitas !== "" && element.fasilitas !== null) {
           const fasilitas_array = element.fasilitas.split(",");
-          response[index].dataValues.fasilitas_array = fasilitas_array;
-          console.log(response[index]);
+          element.dataValues.fasilitas_array = fasilitas_array;
         }
+        return element.toJSON(); // Convert Sequelize model to plain JSON object
       });
-
-      res.json(response);
+  
+      res.json({ error: false, code: 200, data: formattedResponse });
     } catch (error) {
       console.log(error.message);
+      res.json({ error: true, code: 500, data: null });
     }
   };
+  
 
   static async getKamarById(req, res) {
     try {
