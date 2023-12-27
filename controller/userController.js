@@ -14,6 +14,23 @@ class Controller {
     });
 }
 
+static async getUserById(req, res) {
+  const id = req.params.userId;
+  try {
+    const user = await User.findByPk(id);  // Use the primary key directly
+    console.log('User ID:', id);
+    if (!user) {
+      
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.status(200).json( user);
+  } catch (error) {
+    console.error('Error fetching user data by ID:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
 static async register(req, res) {
   const { name, email, password, confirmPassword } = req.body;
 
@@ -63,8 +80,9 @@ static async login(req, res, next) {
             },
             secret
           );
+          const name = users.name
   
-          res.status(200).json({ message: "Berhasil login!", token });
+          res.status(200).json({ message: "Berhasil login!", token, name });
         } else {
           next(new Error("SALAH EMAIL/PASSWORD"));
         } 

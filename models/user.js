@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       validate: {
         notEmpty: {
-          ms: "input tidak boleh string kosong"
+          msg: "input tidak boleh string kosong"
         },
         len: [8, 20],
       },

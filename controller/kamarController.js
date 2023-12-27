@@ -49,9 +49,6 @@ class Controller {
       res.status(500).json({ error: true, code: 500, data: null });
     }
   }
-  
-  
-
 
   static addKamar(req, res, next) {
     try {
