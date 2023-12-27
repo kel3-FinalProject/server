@@ -1,0 +1,594 @@
+{
+	"info": {
+		"_postman_id": "bca8c643-83ca-49c3-9dae-47b055eb22fd",
+		"name": "booking_room",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30431791"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"ibnu\",\r\n    \"email\": \"ibnu123@gmail.com\",\r\n    \"password\": \"vocasia\",\r\n    \"confirmPassword\": \"vocasia\"\r\n}   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://103.127.97.117:4003/register",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4003",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"ibnu165@gmail.com\",\r\n    \"password\": \"admin123\"\r\n}   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://103.127.97.117:4003/login",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4003",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://103.127.97.117:4003/get",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4003",
+							"path": [
+								"get"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Kamar",
+			"item": [
+				{
+					"name": "getKamar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://103.127.97.117:4003/kamar",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4003",
+							"path": [
+								"kamar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getKamarByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://103.127.97.117:4003/kamar/:id",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4003",
+							"path": [
+								"kamar",
+								":id"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addKamar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJpYm51MTIzQGdtYWlsLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDI3NTMzMDd9.XKGQdLasq3f1APcGkpzuLFkHylzxfMwdoU7y_95QWwM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nameKamar",
+									"value": "01VIP",
+									"type": "text"
+								},
+								{
+									"key": "harga",
+									"value": "100000",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "kamar keren",
+									"type": "text"
+								},
+								{
+									"key": "fasilitas",
+									"value": "WiFi, AC, TV, Breakfast, Swimming pool",
+									"type": "text"
+								},
+								{
+									"key": "size",
+									"value": "90 x 200 cm",
+									"type": "text"
+								},
+								{
+									"key": "Class",
+									"value": "VIP",
+									"type": "text"
+								},
+								{
+									"key": "kapasitas",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "Sisi-Bangunan-Hotel-Yang-Bisa-Diterapkan-Di-Rumah-2.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4003/kamar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"kamar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateKamar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJhZ2lsMjIxMTAzQGdtYWlsLmNvbSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcwMjAzMjAwOH0.NWPeb4WOYFCdnmCyThcKXOHZYOoYfXof7srSS1-S0lg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nameKamar",
+									"value": "02VIP",
+									"type": "text"
+								},
+								{
+									"key": "harga",
+									"value": "130000",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "kamar cakep",
+									"type": "text"
+								},
+								{
+									"key": "fasilitas",
+									"value": "TV, WiFi, Swiming pool, Breakfast",
+									"type": "text"
+								},
+								{
+									"key": "size",
+									"value": "90 x 200 cm",
+									"type": "text"
+								},
+								{
+									"key": "kapasitas",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "Class",
+									"value": "VIP",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "37.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://103.127.97.117:4003/kamar/:id",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4003",
+							"path": [
+								"kamar",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteKamar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJhZ2lsMjIxMTAzQGdtYWlsLmNvbSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcwMjAzMjAwOH0.NWPeb4WOYFCdnmCyThcKXOHZYOoYfXof7srSS1-S0lg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://103.127.97.117:4003/kamar/:id",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4003",
+							"path": [
+								"kamar",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reservasi",
+			"item": [
+				{
+					"name": "buatReservasi",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJpYm51MTY1QGdtYWlsLmNvbSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcwMjc0OTE0NX0.ns0CUy806P4nSCEntc8JmnDHdkGrWQaeEhidVrIX0YI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"kamarId\": 1,\r\n   \"tanggal_checkin\": \"2023-11-14\",\r\n   \"tanggal_checkout\": \"2023-11-24\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4003/reservasi",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"reservasi"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upatePembayaran",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJpYm51MTIzQGdtYWlsLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDI3NTMzMDd9.XKGQdLasq3f1APcGkpzuLFkHylzxfMwdoU7y_95QWwM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4003/reservasi/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"reservasi",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getReservasi",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJpYm51MTIzQGdtYWlsLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDI3NTMzMDd9.XKGQdLasq3f1APcGkpzuLFkHylzxfMwdoU7y_95QWwM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4003/reservasi",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"reservasi"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getReservasiById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJpYm51MTIzQGdtYWlsLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDI3NTMzMDd9.XKGQdLasq3f1APcGkpzuLFkHylzxfMwdoU7y_95QWwM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4003/reservasi/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"reservasi",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateStatus",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJpYm51MTY1QGdtYWlsLmNvbSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcwMjc0OTE0NX0.ns0CUy806P4nSCEntc8JmnDHdkGrWQaeEhidVrIX0YI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"apa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4003/reservasi/:id/update-status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"reservasi",
+								":id",
+								"update-status"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteReservasi",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJpYm51MTY1QGdtYWlsLmNvbSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcwMjg5NDczM30.b1AiuXdcqY2jr8jhXJ_PFJUVfnj0mam8X7Ks9YvNliA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4003/reservasi/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"reservasi",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
